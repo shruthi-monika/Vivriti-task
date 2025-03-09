@@ -34,23 +34,21 @@ const navLinkStyle = {
   textTransform: "none",
 };
 
-const Navbar = () => {
+const Navbar = ({setProducts, products}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
 
   const fetchSearchResults = async (query) => {
     try {
-      const response = await searchProducts(query);
-      if (response.data.products.length === 0) {
-        toast.info("❌ No products found!");
-      } else {
-        console.log("Search Results:", response.data.products);
-      }
+      const data = await searchProducts(query);
+      setProducts(data || []);
+  
     } catch (error) {
       console.error("Error fetching search results:", error);
-      toast.error("Something went wrong while searching!");
+      toast.error("❌ Something went wrong while searching!");
     }
   };
+  
 
   const handleSearchChange = (event) => {
     const query = event.target.value;

@@ -18,8 +18,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
+const ProductList = ({ products, setProducts }) => {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -101,7 +100,7 @@ const ProductList = () => {
                   backgroundColor: "#fff",
                   borderRadius: "10px",
                   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-                  marginBottom: "20px"
+                  marginBottom: "20px",
                 }}
               >
                 <InputLabel
